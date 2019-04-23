@@ -1,3 +1,8 @@
+/**
+ * Created by: Ridha Danjanny
+ * ridhadanjanny.mail@gmail.com
+ */
+
 import $ from 'jquery';
 import axios from 'axios';
 import Provinsi from './Provinsi';
@@ -23,7 +28,6 @@ class App {
         myPromise.then((provinsi) => {
             // fetch data provinsi
             provinsi.data.forEach((provinsi) => {
-                console.log(provinsi);
                new Provinsi(this.root, provinsi).render();
             });
         })

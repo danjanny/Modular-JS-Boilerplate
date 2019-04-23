@@ -1,3 +1,10 @@
+/**
+ * Created by: Ridha Danjanny
+ * ridhadanjanny.mail@gmail.com
+ */
+
+import Dropdown from './Dropdown';
+
 class Provinsi {
 
     constructor(root, provinsi) {
@@ -9,14 +16,16 @@ class Provinsi {
     }
 
     render() {
-
         // append element
-        this.root.append(`<p id=${this.state.provinsi.id}>${this.state.provinsi.dapil} , ${this.state.provinsi.long_number}</p>`);
+
+        let dropdown = new Dropdown().render();
+        this.root.append(`<p id=${this.state.provinsi.id}>${this.state.provinsi.dapil} , ${this.state.provinsi.long_number}, ${dropdown}</p>`);
 
         // event handling as remove
         let id = "p#" + this.state.provinsi.id;
-        this.root.children(id).on('click', () => {
-            this.root.children(id).remove();
+        let rowProvinsi = this.root.children(id);
+        rowProvinsi.on('click', () => {
+            rowProvinsi.remove();
             console.log(this.state.provinsi.dapil + " is deleted.");
         });
 
