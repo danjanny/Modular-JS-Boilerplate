@@ -4,6 +4,7 @@
  */
 
 import Dropdown from './Dropdown';
+import './app.css';
 
 class Provinsi {
 
@@ -16,21 +17,19 @@ class Provinsi {
     }
 
     render() {
-        // append element
+        // create row provinsi
+        let dd = new Dropdown().render();
+        let rowProvinsi = document.createElement('p');
+        rowProvinsi.setAttribute('id', this.state.provinsi.id);
+        rowProvinsi.textContent = `${this.state.provinsi.id}. ${this.state.provinsi.dapil} , ${this.state.provinsi.long_number}, ${dd}`;
+        document.getElementById(this.root).appendChild(rowProvinsi);
 
-        let dropdown = new Dropdown().render();
-        this.root.append(`<p id=${this.state.provinsi.id}>${this.state.provinsi.dapil} , ${this.state.provinsi.long_number}, ${dropdown}</p>`);
-
-        // event handling as remove
-        let id = "p#" + this.state.provinsi.id;
-        let rowProvinsi = this.root.children(id);
-        rowProvinsi.on('click', () => {
-            rowProvinsi.remove();
-            console.log(this.state.provinsi.dapil + " is deleted.");
+        // remove provinsi
+        rowProvinsi.addEventListener('click', (e) => {
+            rowProvinsi.parentNode.removeChild(rowProvinsi);
+           console.log(this.state.provinsi.dapil +  " is deleted!");
         });
-
     }
-
 }
 
 export default Provinsi;
